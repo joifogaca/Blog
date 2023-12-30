@@ -2,7 +2,7 @@
 using Blog.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Net;
+
 
 namespace Blog.Controllers
 {
@@ -11,8 +11,16 @@ namespace Blog.Controllers
         [HttpGet("v1/categories")]
         //[HttpGet("categorias")] Tem a opção de mapear 2x o HttpGet, Exemplo 2 idiomas
         public async Task<IActionResult> GetAsync([FromServices] BlogDataContext context) {
-            var categories = await context.Categories.ToListAsync();
-            return Ok(categories);
+            try
+            {
+                var categories = await context.Categories.ToListAsync();
+                return Ok(categories);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "05X07 - Falha interna no servidor");
+            }
+
         }
 
         [HttpGet("v1/categories/{id:int}")]
@@ -20,14 +28,22 @@ namespace Blog.Controllers
             [FromRoute] int id,
             [FromServices] BlogDataContext context)
         {
-            var category = await context
+            try
+            {
+                var category = await context
                 .Categories
                 .FirstOrDefaultAsync(x => x.Id == id);
 
-            if(category == null) 
-                return NotFound();
+                if (category == null)
+                    return NotFound();
 
-            return Ok(category);
+                return Ok(category);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "05X078 - Falha interna no servidor");
+            }
+            
         }
 
         [HttpPost("v1/categories")]
@@ -60,21 +76,33 @@ namespace Blog.Controllers
             [FromRoute] int id,
             [FromServices] BlogDataContext context)
         {
+            try
+            {
+                var category = await context
+              .Categories
+              .FirstOrDefaultAsync(x => x.Id == id);
 
-            var category = await context
-                .Categories
-                .FirstOrDefaultAsync(x => x.Id == id);
+                if (category == null)
+                    return NotFound();
 
-            if (category == null)
-                return NotFound();
+                category.Name = model.Name;
+                category.Slug = model.Slug;
 
-            category.Name = model.Name;
-            category.Slug = model.Slug;
+                context.Categories.Update(category); //Metódo Update não é assincrono
+                await context.SaveChangesAsync();
 
-            context.Categories.Update(category); //Metódo Update não é assincrono
-            await context.SaveChangesAsync();
+                return Ok(model);
+            }
+            catch (DbUpdateException ex) //exeção o catch pega a mais especifica e as abaixos podem ser mais genericas
+            {
+                return StatusCode(500, "05X11 - Não foi possivél alterar a categoria");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "05X12 - Falha interna no servidor");
+            }
 
-            return Ok(model);
+
         }
 
         [HttpDelete("v1/categories/{id:int}")]
@@ -82,18 +110,30 @@ namespace Blog.Controllers
            [FromRoute] int id,
            [FromServices] BlogDataContext context)
         {
+            try
+            {
+                var category = await context
+                               .Categories
+                               .FirstOrDefaultAsync(x => x.Id == id);
 
-            var category = await context
-                .Categories
-                .FirstOrDefaultAsync(x => x.Id == id);
+                if (category == null)
+                    return NotFound();
 
-            if (category == null)
-                return NotFound();
+                context.Categories.Remove(category); //Metódo Remove não é assincrono
+                await context.SaveChangesAsync();
 
-            context.Categories.Remove(category); //Metódo Remove não é assincrono
-            await context.SaveChangesAsync();
+                return Ok(category);
+            }
+            catch (DbUpdateException ex) //exeção o catch pega a mais especifica e as abaixos podem ser mais genericas
+            {
+                return StatusCode(500, "05X13 - Não foi possivél excluir a categoria");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "05X14 - Falha interna no servidor");
+            }
 
-            return Ok(category);
+
         }
     }
 }
