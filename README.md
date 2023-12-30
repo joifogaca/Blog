@@ -25,6 +25,11 @@ POST => usado para criar um novo recurso no servidor. Ao realizar a operação ser
 PUT => é o método para atualização do recurso ou criar um recurso se não existir. Se bem sucedida devolve o status 200 OK,
 DELETE => método para excluir um recurso. Quando concluido com sucesso, o servidor retorna o código de status No Content 204 caso não encontre o recurso solicitado para remoção.
 
-### Dica do Balta
+#### Dica do Balta
 
 Colocar um código para cada erro que for lançado, isso facilita na hora da rastreabilidade.
+
+### View Models (MVVM)
+
+E um padrão de arquiterura, onde separamos o modelo que chega para API, como o Modelo que usamos no banco de dados
+
