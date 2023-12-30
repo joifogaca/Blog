@@ -24,3 +24,7 @@ GET => e usado para retornar informação do recurso identificado na URI. O código
 POST => usado para criar um novo recurso no servidor. Ao realizar a operação servidor com o status 201 CREATED, fornecendo URI do recurso criado.
 PUT => é o método para atualização do recurso ou criar um recurso se não existir. Se bem sucedida devolve o status 200 OK,
 DELETE => método para excluir um recurso. Quando concluido com sucesso, o servidor retorna o código de status No Content 204 caso não encontre o recurso solicitado para remoção.
+
+### Dica do Balta
+
+Colocar um código para cada erro que for lançado, isso facilita na hora da rastreabilidade.
