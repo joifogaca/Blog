@@ -31,5 +31,9 @@ Colocar um código para cada erro que for lançado, isso facilita na hora da rastr
 
 ### View Models (MVVM)
 
-E um padrão de arquiterura, onde separamos o modelo que chega para API, como o Modelo que usamos no banco de dados
+E um padrão de arquiterura, onde temos 2 modelos diferentes o que chega da API, e o Modelo que usamos no banco de dados.
+
+Quando temos um modelo que é comum tanto para criação, tanto para edição existe uma convenção inicia o nome da classe como editor.
+
+Vantagens do View Model é separar a validação que é exclusiva para tela
 
