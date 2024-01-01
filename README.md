@@ -37,3 +37,8 @@ Quando temos um modelo que é comum tanto para criação, tanto para edição existe 
 
 Vantagens do View Model é separar a validação que é exclusiva para tela
 
+### Métodos de Extension do .NET
+
+* Extende uma classe Nativa do .NET, 
+* Devem ser estáticas
+
