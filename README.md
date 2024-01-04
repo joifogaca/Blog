@@ -42,3 +42,12 @@ Vantagens do View Model é separar a validação que é exclusiva para tela
 * Extende uma classe Nativa do .NET, 
 * Devem ser estáticas
 
+
+### Autenticação e Autorização 
+
+Em api o usuário nunca fica logado direto, ele se autentica a cada requisição. 
+O token é encripitado, com uma chave que fica no servidor, só é possivel descripitografar com essa chave.
+Autenticação quem é. 
+Autorização o que você pode fazer.
+
+Claim => Permite gerar valores na na token criptografado que podem, ser descriptografado sem a chave.
