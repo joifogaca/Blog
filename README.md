@@ -51,3 +51,33 @@ Autenticação quem é.
 Autorização o que você pode fazer.
 
 Claim => Permite gerar valores na na token criptografado que podem, ser descriptografado sem a chave.
+
+#### Annotations de Autentificação e Autorização
+
+[AllowAnonymous] => Apesar do Authorize do Controller, ele vai liberar o metódo login, sem estar logado
+[Authorize(Roles = "user")] => Pode ser usado no método ou no controller todo
+
+Guardar senha no banco geralmente é um problema, a melhor alternativa é logar com facebook ou google, se você salvar no seu banco que seja no minimo encriptografada.
+
+PasswordHasher.Hash sempre gera um hash diferente
+
+#### Modos de autenticação 
+
+##### JWT Bearer
+
+* Feito por usuário e senha
+
+##### APIKEY
+
+* você expõe o método que usamos dessa forma
+* Acesso por um rôbo, não usuário final
+* Cuidado com a segurança é mais fácil de conseguir acessar 
+* Não usa anotation Authorize
+
+## Processo de autenticação e autorização Bearer JWT
+
+1. No endpoint de criação do usuário será gerado um hash da senha.
+2. Ao fazer o login verifica se o usuário se encontra no banco, 
+3. O usuário estando no banco, verifica se o Hash da senha salva no banco é referente a senha recebida na requisição,
+4. Se positivo, e gerado um token, onde através dos Claim, é adicinada um dado ao token, dados como Role, usuário e outros se necessários
+5. O response será o token gerado, que deverá ser enviado nas proximas requisições.
