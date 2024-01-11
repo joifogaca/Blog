@@ -81,3 +81,12 @@ PasswordHasher.Hash sempre gera um hash diferente
 3. O usuário estando no banco, verifica se o Hash da senha salva no banco é referente a senha recebida na requisição,
 4. Se positivo, e gerado um token, onde através dos Claim, é adicinada um dado ao token, dados como Role, usuário e outros se necessários
 5. O response será o token gerado, que deverá ser enviado nas proximas requisições.
+
+https://jwt.io/
+Link para decodificar token
+
+## Envio de Email
+
+API_Key_send_grid = "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";
+
+* envio de email, se não tiver um IP dedicado pode ser bloqueado por conta de outros email´do servidor já terem passado como SPAM. 
