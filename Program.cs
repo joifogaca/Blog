@@ -20,7 +20,7 @@ LoadConfiguration(app);
 
 app.UseAuthentication(); //Primeira autenticção
 app.UseAuthorization(); //Depois autorização
-
+app.UseStaticFiles();
 app.MapControllers();
 
 app.Run();
@@ -67,4 +67,5 @@ void ConfigureService(WebApplicationBuilder builder)
 {
     builder.Services.AddDbContext<BlogDataContext>();
     builder.Services.AddTransient<TokenService>();
+    builder.Services.AddTransient<EmailService>();
 }

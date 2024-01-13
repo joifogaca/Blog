@@ -90,3 +90,15 @@ Link para decodificar token
 API_Key_send_grid = "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";
 
 * envio de email, se não tiver um IP dedicado pode ser bloqueado por conta de outros email´do servidor já terem passado como SPAM. 
+
+* Para usar uma porta segura devemos **EnableSsl** deverá ser true, a porta será 587
+* **mail.IsBodyHtml** permite usar linguagem Html para formatação
+* Email do From deve ser o mesmo cadastrado no SendGrid
+
+## Arquivos estáticos 
+
+São arquivos que estão salvos na aplicação. Fica na pasta **wwwroot**
+
+> Precisamos adicionar no Program.cs `app.UseStaticFiles()` para que a aplicação consiga lidar com aplicativos estáticos, tipo imagem. O melhor séria usar um serviço de storage, pois um arquivo pesado, consome muito do servidor, aconselha só em caso de poucos arquivos.
+
+> Gerar o nome da imagem com Guid é importante para termos uma imagem única, caso suba 2 imagem com o mesmo nome podemos ter problemas de cache. E sempre trazer a imagem anterior.
