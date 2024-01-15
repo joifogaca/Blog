@@ -102,7 +102,7 @@ namespace Blog.Controllers
         }
 
         [Authorize]
-        [HttpPost("v1/acconts/upload-image")]
+        [HttpPost("v1/accounts/upload-image")]
         public async Task<IActionResult> UploadImage(
             [FromBody] UploadViewModel model,
             [FromServices] BlogDataContext context) {

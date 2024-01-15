@@ -102,3 +102,7 @@ São arquivos que estão salvos na aplicação. Fica na pasta **wwwroot**
 > Precisamos adicionar no Program.cs `app.UseStaticFiles()` para que a aplicação consiga lidar com aplicativos estáticos, tipo imagem. O melhor séria usar um serviço de storage, pois um arquivo pesado, consome muito do servidor, aconselha só em caso de poucos arquivos.
 
 > Gerar o nome da imagem com Guid é importante para termos uma imagem única, caso suba 2 imagem com o mesmo nome podemos ter problemas de cache. E sempre trazer a imagem anterior.
+
+Conseguimos acessar a imagem atráves do link:
+
+https://localhost:7047/images/219ff50f-0e8e-4433-9b92-268849df7380.jpg
