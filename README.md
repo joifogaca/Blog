@@ -106,3 +106,7 @@ São arquivos que estão salvos na aplicação. Fica na pasta **wwwroot**
 Conseguimos acessar a imagem atráves do link:
 
 https://localhost:7047/images/219ff50f-0e8e-4433-9b92-268849df7380.jpg
+
+## ViewModel para retorno do EF
+
+Caso tenhamos referência circular, exemplo: aluno tem vários cursos, e no curso temos vários alunos, o include dará erro na resposta da API, isso se não utilizarmos o metodo Select ( com ou sem a tipagem da viewModel)

@@ -67,7 +67,9 @@ namespace Blog.Controllers
 
         }
 
-        // [AllowAnonymous] //Apesar do Authorize do Controller, ele vai liberar o metódo login, sem estar logado
+
+        //Apesar do Authorize do Controller, ele vai liberar o metódo login, sem estar logado
+        [AllowAnonymous]
         [HttpPost("v1/accounts/login")]
         public async Task<IActionResult> Login(
             [FromBody] LoginViewModel model,
